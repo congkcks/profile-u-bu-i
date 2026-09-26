@@ -1,6 +1,6 @@
 import {
-  Baseball,
   BookOpen,
+  CircleDot,
   Gamepad2,
   Joystick,
   MapPin,
@@ -152,7 +152,7 @@ export function BeyondTheCode() {
               />
               <div className="absolute inset-0 bg-card-overlay" />
               <div className="absolute inset-x-5 bottom-4 flex items-center gap-3">
-                <Baseball className="size-6 text-lifestyle-warm" />
+                <CircleDot className="size-6 text-lifestyle-warm" />
                 <div>
                   <h3 className="font-display text-xl uppercase">Baseball</h3>
                   <p className="text-xs text-muted-foreground">Weekend energy.</p>
