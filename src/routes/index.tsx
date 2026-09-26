@@ -11,9 +11,9 @@ import { Experience } from "@/components/site/Experience";
 import { BeyondTheCode } from "@/components/site/BeyondTheCode";
 import { Contact } from "@/components/site/Contact";
 
-const title = "Nolan N. — AI Engineer | Computer Vision × LLM × .NET";
+const title = "Nolan N. — AI Engineer | Computer Vision & Industrial AI";
 const description =
-  "Portfolio of Nolan N., AI Engineer building computer vision, industrial AI and LLM systems integrated into production-grade .NET software.";
+  "AI Engineer specializing in Computer Vision, Industrial AI, LLM systems and production-grade .NET applications.";
 
 export const Route = createFileRoute("/")({
   component: Index,
