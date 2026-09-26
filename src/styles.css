@@ -39,6 +39,10 @@
   --color-violet: var(--violet);
   --color-surface: var(--surface);
   --color-surface-2: var(--surface-2);
+  --color-lifestyle-bg: var(--lifestyle-bg);
+  --color-lifestyle-pink: var(--lifestyle-pink);
+  --color-lifestyle-mint: var(--lifestyle-mint);
+  --color-lifestyle-warm: var(--lifestyle-warm);
   --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
@@ -70,7 +74,14 @@
   --ring: oklch(0.72 0.17 245);
 
   --grid-line: oklch(1 0 0 / 5%);
+  --lifestyle-bg: oklch(0.12 0.018 265);
+  --lifestyle-pink: oklch(0.74 0.18 330);
+  --lifestyle-mint: oklch(0.79 0.18 160);
+  --lifestyle-warm: oklch(0.8 0.17 65);
   --gradient-accent: linear-gradient(120deg, var(--primary), var(--violet));
+  --beyond-overlay: linear-gradient(180deg, color-mix(in oklab, var(--lifestyle-bg) 68%, transparent), var(--lifestyle-bg) 46%, var(--lifestyle-bg));
+  --image-overlay: linear-gradient(180deg, transparent 30%, color-mix(in oklab, var(--lifestyle-bg) 95%, transparent));
+  --card-overlay: linear-gradient(180deg, transparent 35%, color-mix(in oklab, var(--background) 96%, transparent));
   --glow-accent: 0 0 60px -10px color-mix(in oklab, var(--primary) 55%, transparent);
 }
 
@@ -116,6 +127,18 @@
 
 @utility glow {
   box-shadow: var(--glow-accent);
+}
+
+@utility bg-beyond-overlay {
+  background: var(--beyond-overlay);
+}
+
+@utility bg-image-overlay {
+  background: var(--image-overlay);
+}
+
+@utility bg-card-overlay {
+  background: var(--card-overlay);
 }
 
 @utility reveal {

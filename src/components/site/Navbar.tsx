@@ -8,6 +8,7 @@ const links = [
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
+  { label: "Beyond", href: "#beyond" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -34,7 +35,7 @@ export function Navbar() {
           Nolan<span className="text-primary">.dev</span>
         </a>
 
-        <ul className="hidden items-center gap-8 md:flex">
+        <ul className="hidden items-center gap-6 md:flex lg:gap-8">
           {links.map((l) => (
             <li key={l.href}>
               <a

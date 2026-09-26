@@ -890,24 +890,3 @@ a generic frontend developer template.
 ```
 
 Một điểm mình sẽ nhấn rất mạnh: **đừng để C#, Python, AI, LLM, Computer Vision ngang hàng như 5 keyword rời rạc.** Câu chuyện của website nên là **“Tôi xây AI → đưa AI vào software → đưa software xuống hệ thống công nghiệp thực tế.”** Khi đó Python/YOLO/PyTorch là phía AI, C#/.NET/WPF là phía production, ONNX nằm ở cầu nối giữa hai thế giới. Đây chính là điểm khiến profile này có bản sắc hơn một portfolio AI Engineer thông thường.
-
-This project was built with [Lovable](https://lovable.dev).
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/cee3f05d-54d7-4c15-81fb-cd1d79bbe2c8).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
-
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
-npm run dev
-```

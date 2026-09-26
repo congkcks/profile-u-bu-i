@@ -8,3 +8,7 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+# Nolan.dev portfolio architecture
+
+- User-facing images are stored under `public/images/` and referenced with root-relative `/images/...` paths so deployments do not depend on external media hosts.

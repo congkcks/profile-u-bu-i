@@ -1,5 +1,4 @@
 import { ArrowDown, ArrowUpRight } from "lucide-react";
-import heroAsset from "@/assets/image-5.png.asset.json";
 import { Reveal } from "./Reveal";
 
 export function Hero() {
@@ -90,9 +89,11 @@ export function Hero() {
               style={{ animation: "drift 9s ease-in-out infinite" }}
             >
               <img
-                src={heroAsset.url}
+                src="/images/profile/nolan-presentation.jpg"
                 alt="Nolan presenting an AI project to an audience"
                 loading="eager"
+                width={1099}
+                height={1099}
                 className="size-full scale-105 object-cover contrast-105 grayscale-[35%]"
               />
               <div
