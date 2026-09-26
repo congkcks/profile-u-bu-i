@@ -89,7 +89,7 @@ export function Hero() {
               style={{ animation: "drift 9s ease-in-out infinite" }}
             >
               <img
-                src="/images/profile/nolan-presentation.webp"
+                src="/images/profile/nolan-presentation.jpg"
                 alt="Nolan presenting an AI project to an audience"
                 loading="eager"
                 width={1099}

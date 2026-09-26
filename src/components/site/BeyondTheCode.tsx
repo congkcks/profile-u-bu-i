@@ -17,13 +17,13 @@ const baseballTags = ["Baseball", "Weekend activity", "Training", "Entertainment
 
 const polaroids = [
   {
-    src: "/images/profile/nolan-portrait.webp",
+    src: "/images/profile/nolan-portrait.jpg",
     alt: "Nolan celebrating Lunar New Year beside peach blossoms",
     label: "Anime mode",
     rotation: "-rotate-2",
   },
   {
-    src: "/images/profile/nolan-outdoor.webp",
+    src: "/images/profile/nolan-outdoor.jpg",
     alt: "Nolan spending time outdoors",
     label: "Weekend mode",
     rotation: "rotate-2",
