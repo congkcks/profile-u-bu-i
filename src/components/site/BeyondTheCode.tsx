@@ -164,7 +164,7 @@ export function BeyondTheCode() {
                 <li key={tag} className="border border-border bg-surface/70 px-2.5 py-2 font-mono text-[9px] uppercase text-muted-foreground">{tag}</li>
               ))}
             </ul>
-          </div>
+          </Reveal>
         </div>
 
         <div className="mt-8 hidden justify-end gap-4 sm:flex">
