@@ -12,3 +12,4 @@
 # Nolan.dev portfolio architecture
 
 - User-facing images are stored under `public/images/` and referenced with root-relative `/images/...` paths so deployments do not depend on external media hosts.
+- The technical portfolio story flows from stack to industrial pipeline to generative AI to featured projects, matching the dense dashboard-style reference while keeping a single scrolling page.
