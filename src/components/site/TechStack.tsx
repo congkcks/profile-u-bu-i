@@ -1,77 +1,84 @@
+import { Braces, Camera, Cpu, Database, Layers3, MonitorCog, Network, ScanLine } from "lucide-react";
 import { Reveal, SectionHeading } from "./Reveal";
 
 const groups = [
   {
     index: "01",
-    title: "AI / Machine Learning",
-    items: ["Python", "PyTorch", "Ultralytics", "ONNX", "NumPy"],
-    note: "Training and optimising deep learning models.",
+    title: "AI / Deep Learning",
+    icon: Network,
+    image: "/images/projects/industrial-ai/onnx-deployment.jpg",
+    items: ["Python", "PyTorch", "Ultralytics", "NumPy"],
+    note: "Training, evaluating and optimising deep learning models.",
   },
   {
     index: "02",
     title: "Computer Vision",
-    items: [
-      "OpenCV",
-      "YOLO",
-      "Object Detection",
-      "Image Processing",
-      "Segmentation",
-      "Defect Detection",
-    ],
-    note: "Building vision systems for real-world inspection.",
+    icon: ScanLine,
+    image: "/images/projects/computer-vision/machine-vision-inspection.jpg",
+    items: ["OpenCV", "YOLO", "Detection", "Segmentation"],
+    note: "Vision systems built for real-world industrial inspection.",
   },
   {
     index: "03",
-    title: "Software Engineering",
-    items: ["C#", ".NET 8", "WPF", "REST API", "Clean Architecture", "CQRS"],
-    note: "Shipping AI inside production desktop software.",
+    title: "Deployment & Optimisation",
+    icon: Cpu,
+    image: "/images/projects/industrial-ai/onnx-deployment.jpg",
+    items: ["ONNX", "TensorRT", "CUDA", "Edge Inference"],
+    note: "Fast, measurable inference from GPU to factory edge.",
   },
   {
     index: "04",
-    title: "Generative AI",
-    items: ["LLM", "RAG", "AI Agents", "Prompt Engineering", "Workflow Automation"],
-    note: "Knowledge-aware assistants and automation.",
+    title: "Software & Generative AI",
+    icon: MonitorCog,
+    image: "/images/projects/industrial-ai/dotnet-production-app.jpg",
+    items: ["C# / .NET 8", "WPF", "RAG", "AI Agents"],
+    note: "Production applications that turn models into useful systems.",
   },
+];
+
+const stats = [
+  { value: "15+", label: "Core technologies", icon: Braces },
+  { value: "05", label: "Main domains", icon: Layers3 },
+  { value: "24/7", label: "Production ready", icon: Database },
 ];
 
 export function TechStack() {
   return (
-    <section id="skills" className="relative mx-auto max-w-7xl px-5 py-28 sm:px-8 sm:py-36">
-      <SectionHeading index="02" label="Tech Stack" headline="Technologies I work with." />
-
-      <div className="mt-14 grid gap-5 md:grid-cols-2">
-        {groups.map((g, i) => (
-          <Reveal
-            key={g.title}
-            delay={i * 90}
-            className="group relative overflow-hidden rounded-xl border border-border bg-surface/40 p-7 transition-all duration-500 hover:border-primary/40"
-          >
-            <div className="grid-bg absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-            <div
-              className="absolute -top-24 -right-16 size-56 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-30"
-              style={{ background: "var(--gradient-accent)" }}
-            />
-            <div className="relative flex items-start justify-between">
-              <h3 className="font-mono text-xs tracking-[0.26em] uppercase">{g.title}</h3>
-              <span className="font-mono text-xs text-muted-foreground">{g.index}</span>
-            </div>
-
-            <ul className="relative mt-7 space-y-2.5">
-              {g.items.map((item) => (
-                <li
-                  key={item}
-                  className="font-display text-xl tracking-tight text-foreground/85 transition-colors group-hover:text-foreground sm:text-2xl"
-                >
-                  {item}
-                </li>
-              ))}
-            </ul>
-
-            <div className="relative mt-8 border-t border-border pt-4 text-sm text-muted-foreground">
-              {g.note}
-            </div>
+    <section id="skills" className="relative overflow-hidden border-y border-border bg-surface/20">
+      <div className="grid-bg absolute inset-0 opacity-50" aria-hidden />
+      <div className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
+        <div className="grid gap-10 lg:grid-cols-[0.55fr_1.45fr] lg:items-end">
+          <SectionHeading index="03" label="Tech Stack" headline="Technologies I work with." />
+          <Reveal delay={80} className="grid grid-cols-3 border border-border bg-background/70">
+            {stats.map((stat) => (
+              <div key={stat.label} className="border-r border-border p-4 last:border-r-0 sm:p-5">
+                <stat.icon className="size-4 text-primary" />
+                <p className="mt-4 font-display text-2xl sm:text-3xl">{stat.value}</p>
+                <p className="mt-1 font-mono text-[9px] uppercase text-muted-foreground">{stat.label}</p>
+              </div>
+            ))}
           </Reveal>
-        ))}
+        </div>
+
+        <div className="mt-12 grid gap-4 md:grid-cols-2">
+          {groups.map((group, index) => (
+            <Reveal key={group.title} delay={index * 70} className="group grid min-h-[300px] overflow-hidden border border-border bg-background/80 sm:grid-cols-[0.9fr_1.1fr]">
+              <div className="relative min-h-48 overflow-hidden border-b border-border sm:min-h-full sm:border-r sm:border-b-0">
+                <img src={group.image} alt="" loading="lazy" width={1280} height={960} className="absolute inset-0 size-full object-cover opacity-75 transition duration-700 group-hover:scale-105 group-hover:opacity-95" />
+                <div className="absolute inset-0 bg-card-overlay" />
+                <span className="absolute top-4 left-4 border border-primary/40 bg-background/80 px-2 py-1 font-mono text-[10px] text-primary">{group.index}</span>
+              </div>
+              <div className="flex flex-col p-6">
+                <group.icon className="size-6 text-primary" />
+                <h3 className="mt-5 font-display text-xl uppercase sm:text-2xl">{group.title}</h3>
+                <ul className="mt-5 grid grid-cols-2 gap-2">
+                  {group.items.map((item) => <li key={item} className="border border-border bg-surface/60 px-2.5 py-2 font-mono text-[10px] uppercase text-muted-foreground">{item}</li>)}
+                </ul>
+                <p className="mt-auto pt-6 text-sm leading-relaxed text-muted-foreground">{group.note}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
       </div>
     </section>
   );

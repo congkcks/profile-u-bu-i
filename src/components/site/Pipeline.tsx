@@ -1,72 +1,43 @@
-import { Reveal } from "./Reveal";
+import { Aperture, Boxes, Camera, Cpu, Factory, MonitorCog } from "lucide-react";
+import { Reveal, SectionHeading } from "./Reveal";
 
 const stages = [
-  { label: "Real World", side: "physical" },
-  { label: "Camera", side: "physical" },
-  { label: "Image Processing", side: "ai" },
-  { label: "AI Model", side: "ai" },
-  { label: "ONNX Inference", side: "bridge" },
-  { label: ".NET Application", side: "production" },
-  { label: "Industrial System / PLC", side: "production" },
+  { title: "Data Collection", icon: Camera, image: "/images/projects/computer-vision/machine-vision-inspection.jpg", items: ["Industrial cameras", "Lighting & optics"] },
+  { title: "Image Processing", icon: Aperture, image: "/images/projects/computer-vision/machine-vision-inspection.jpg", items: ["Pre-processing", "Augmentation"] },
+  { title: "Model Training", icon: Boxes, image: "/images/projects/industrial-ai/onnx-deployment.jpg", items: ["YOLO / PyTorch", "Evaluation"] },
+  { title: "ONNX Deployment", icon: Cpu, image: "/images/projects/industrial-ai/onnx-deployment.jpg", items: ["Optimisation", "Fast inference"] },
+  { title: ".NET Application", icon: MonitorCog, image: "/images/projects/industrial-ai/dotnet-production-app.jpg", items: ["C# / WPF", "Operator UI"] },
+  { title: "Factory / PLC", icon: Factory, image: "/images/projects/industrial-ai/dotnet-production-app.jpg", items: ["Line control", "24/7 operation"] },
 ];
 
 export function Pipeline() {
   return (
-    <section className="relative overflow-hidden border-y border-border bg-surface/20">
-      <div className="grid-bg absolute inset-0 opacity-50" />
-      <div className="relative mx-auto max-w-7xl px-5 py-28 sm:px-8 sm:py-36">
-        <Reveal className="max-w-3xl">
-          <p className="label-eyebrow">How I build AI</p>
-          <h2 className="mt-5 font-display text-3xl leading-[1.08] tracking-tight sm:text-5xl md:text-6xl">
-            From pixels to production.
-          </h2>
-          <p className="mt-6 max-w-xl text-base text-muted-foreground">
-            Python and YOLO handle the model. C#, .NET and WPF handle the product. ONNX is
-            the bridge between the two worlds.
-          </p>
-        </Reveal>
-
-        <Reveal delay={150} className="mt-16">
-          <div className="relative">
-            <div className="absolute top-6 right-0 left-0 hidden h-px bg-border lg:block" />
-            <div
-              className="absolute top-6 hidden h-px w-16 lg:block"
-              style={{
-                background: "var(--gradient-accent)",
-                animation: "pipeline-signal 6s linear infinite",
-              }}
-            />
-
-            <ol className="grid gap-4 lg:grid-cols-7 lg:gap-2">
-              {stages.map((s, i) => (
-                <li key={s.label} className="relative flex gap-4 lg:block">
-                  <div className="flex flex-col items-center lg:block">
-                    <span
-                      className="relative z-10 flex size-3 shrink-0 items-center justify-center rounded-full border border-primary/60 bg-background lg:mt-[1.125rem]"
-                      style={{
-                        animation: `pulse-dot 3s ease-in-out ${i * 0.35}s infinite`,
-                      }}
-                    >
-                      <span className="size-1 rounded-full bg-primary" />
-                    </span>
-                    {i < stages.length - 1 && (
-                      <span className="mt-1 w-px flex-1 bg-border lg:hidden" />
-                    )}
-                  </div>
-                  <div className="pb-6 lg:pt-6 lg:pb-0">
-                    <span className="font-mono text-[10px] tracking-[0.25em] text-primary/70">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <p className="mt-2 font-display text-lg leading-tight tracking-tight">
-                      {s.label}
-                    </p>
-                    <p className="mt-1 font-mono text-[10px] tracking-[0.2em] text-muted-foreground uppercase">
-                      {s.side}
-                    </p>
-                  </div>
-                </li>
-              ))}
-            </ol>
+    <section className="relative overflow-hidden bg-background">
+      <div className="mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
+        <SectionHeading index="04" label="Workflow" headline="From model training to the factory floor." />
+        <Reveal delay={120} className="relative mt-12">
+          <div className="absolute top-[5.5rem] right-10 left-10 hidden h-px bg-primary/40 lg:block" aria-hidden />
+          <ol className="grid gap-3 sm:grid-cols-2 lg:grid-cols-6">
+            {stages.map((stage, index) => (
+              <li key={stage.title} className="group relative overflow-hidden border border-border bg-surface/30">
+                <div className="relative h-36 overflow-hidden border-b border-border">
+                  <img src={stage.image} alt="" loading="lazy" width={1280} height={960} className="size-full object-cover opacity-50 transition duration-700 group-hover:scale-105 group-hover:opacity-80" />
+                  <div className="absolute inset-0 bg-card-overlay" />
+                  <span className="absolute top-3 left-3 font-mono text-[10px] text-primary">0{index + 1}</span>
+                  <span className="absolute right-3 bottom-3 flex size-9 items-center justify-center border border-primary/50 bg-background text-primary"><stage.icon className="size-4" /></span>
+                </div>
+                <div className="p-4">
+                  <h3 className="min-h-12 font-display text-base uppercase">{stage.title}</h3>
+                  <ul className="mt-4 space-y-2">
+                    {stage.items.map((item) => <li key={item} className="flex items-center gap-2 font-mono text-[9px] uppercase text-muted-foreground"><span className="size-1 bg-primary" />{item}</li>)}
+                  </ul>
+                </div>
+              </li>
+            ))}
+          </ol>
+          <div className="mt-6 flex flex-wrap items-center gap-x-7 gap-y-3 border border-border bg-surface/30 px-5 py-4 font-mono text-[9px] uppercase text-muted-foreground">
+            <span className="text-primary">Pipeline status</span>
+            {stages.map((stage) => <span key={stage.title} className="flex items-center gap-2"><span className="size-1.5 rounded-full bg-primary" />{stage.title}</span>)}
           </div>
         </Reveal>
       </div>

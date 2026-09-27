@@ -1,88 +1,32 @@
-import { ArrowUpRight } from "lucide-react";
-import { Reveal, SectionHeading } from "./Reveal";
-
-const featuredTech = [
-  "Computer Vision",
-  "Deep Learning",
-  "C#",
-  ".NET",
-  "WPF",
-  "ONNX",
-  "Industrial Cameras",
-];
+import { ArrowUpRight, Bot, ScanLine, Search } from "lucide-react";
+import { Reveal } from "./Reveal";
 
 const projects = [
-  {
-    title: "Industrial Defect Detection",
-    tech: ["YOLO", "Python", "PyTorch", "OpenCV", "ONNX"],
-    desc: "Detect manufacturing defects with real-time computer vision.",
-  },
-  {
-    title: "LLM Intelligent Assistant",
-    tech: ["Python", "LLM", "RAG", "Vector DB", "API"],
-    desc: "Knowledge-aware AI assistant with document understanding and intelligent retrieval.",
-  },
-  {
-    title: "AI Desktop Application",
-    tech: ["C#", "WPF", ".NET 8", "ONNX Runtime"],
-    desc: "Production desktop application integrating AI inference directly into a .NET environment.",
-  },
+  { title: "Industrial Defect Detection", category: "Computer Vision", image: "/images/projects/computer-vision/machine-vision-inspection.jpg", icon: ScanLine, tech: ["YOLO", "PyTorch", "OpenCV", "ONNX"], desc: "Real-time visual inspection for manufacturing quality control." },
+  { title: "Knowledge Intelligence", category: "RAG System", image: "/images/projects/llm-rag/ai-agent-network.jpg", icon: Search, tech: ["LLM", "RAG", "Vector DB", "API"], desc: "Document understanding with grounded, traceable retrieval." },
+  { title: "Production AI Assistant", category: "AI Agent", image: "/images/projects/industrial-ai/dotnet-production-app.jpg", icon: Bot, tech: ["Agents", ".NET 8", "WPF", "Tools"], desc: "A tool-using assistant integrated into production software." },
 ];
 
 export function Projects() {
   return (
-    <section id="projects" className="relative mx-auto max-w-7xl px-5 py-28 sm:px-8 sm:py-36">
-      <SectionHeading index="04" label="Selected Work" headline="Systems, not demos." />
-
-      <Reveal className="group relative mt-14 overflow-hidden rounded-2xl border border-border bg-surface/40">
-        <div className="grid-bg absolute inset-0 opacity-60" />
-        <div
-          className="absolute -top-32 right-0 size-96 rounded-full opacity-20 blur-[100px] transition-opacity duration-700 group-hover:opacity-40"
-          style={{ background: "var(--gradient-accent)" }}
-        />
-        <div className="relative grid gap-10 p-8 sm:p-12 lg:grid-cols-[1fr_0.8fr]">
-          <div>
-            <p className="label-eyebrow">Industrial AI / Computer Vision</p>
-            <h3 className="mt-5 font-display text-5xl tracking-[-0.03em] sm:text-7xl">
-              SOTAVISION
-            </h3>
-            <p className="mt-6 max-w-lg text-base leading-relaxed text-muted-foreground sm:text-lg">
-              AI-powered visual inspection platform designed for automated manufacturing
-              quality control.
-            </p>
-          </div>
-          <ul className="flex flex-wrap content-start gap-2 lg:justify-end">
-            {featuredTech.map((t) => (
-              <li
-                key={t}
-                className="rounded-full border border-border px-3 py-1.5 font-mono text-[11px] tracking-widest text-muted-foreground uppercase"
-              >
-                {t}
-              </li>
-            ))}
-          </ul>
-        </div>
+    <section id="projects" className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
+      <Reveal className="flex flex-col justify-between gap-5 border-b border-border pb-7 sm:flex-row sm:items-end">
+        <div><p className="label-eyebrow">Featured projects</p><h2 className="mt-4 font-display text-3xl uppercase sm:text-5xl">Built for the real world.</h2></div>
+        <p className="max-w-md text-sm leading-relaxed text-muted-foreground">Selected systems spanning vision inspection, knowledge retrieval and production AI.</p>
       </Reveal>
-
-      <div className="mt-5 grid gap-5 md:grid-cols-3">
-        {projects.map((p, i) => (
-          <Reveal
-            key={p.title}
-            delay={i * 90}
-            className="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-border bg-surface/30 p-7 transition-all duration-500 hover:-translate-y-1 hover:border-primary/40"
-          >
-            <div>
-              <div className="flex items-start justify-between gap-4">
-                <h3 className="font-display text-2xl leading-tight tracking-tight">
-                  {p.title}
-                </h3>
-                <ArrowUpRight className="size-4 shrink-0 text-muted-foreground transition-colors group-hover:text-primary" />
-              </div>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{p.desc}</p>
+      <div className="mt-8 grid gap-4 lg:grid-cols-3">
+        {projects.map((project, index) => (
+          <Reveal key={project.title} delay={index * 80} className="group overflow-hidden border border-border bg-surface/30 transition-colors hover:border-primary/50">
+            <div className="relative aspect-[16/10] overflow-hidden border-b border-border">
+              <img src={project.image} alt="" loading="lazy" width={1280} height={960} className="size-full object-cover opacity-65 transition duration-700 group-hover:scale-105 group-hover:opacity-90" />
+              <div className="absolute inset-0 bg-card-overlay" />
+              <span className="absolute top-4 left-4 flex items-center gap-2 border border-primary/40 bg-background/80 px-3 py-2 font-mono text-[9px] uppercase text-primary"><project.icon className="size-3" />{project.category}</span>
             </div>
-            <p className="mt-8 font-mono text-[11px] tracking-widest text-muted-foreground/80 uppercase">
-              {p.tech.join(" · ")}
-            </p>
+            <div className="p-6">
+              <div className="flex items-start justify-between gap-4"><h3 className="font-display text-2xl uppercase">{project.title}</h3><ArrowUpRight className="size-5 shrink-0 text-primary" /></div>
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{project.desc}</p>
+              <ul className="mt-6 flex flex-wrap gap-2">{project.tech.map((tech) => <li key={tech} className="border border-border px-2.5 py-1.5 font-mono text-[9px] uppercase text-muted-foreground">{tech}</li>)}</ul>
+            </div>
           </Reveal>
         ))}
       </div>
