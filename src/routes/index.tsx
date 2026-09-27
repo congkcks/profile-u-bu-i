@@ -61,9 +61,9 @@ function Index() {
         <Marquee />
         <About />
         <TechStack />
+        <Pipeline />
         <Expertise />
         <Projects />
-        <Pipeline />
         <Experience />
         <BeyondTheCode />
         <Contact />
