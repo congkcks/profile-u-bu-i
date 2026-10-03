@@ -40,7 +40,7 @@ export function Navbar() {
         <ul className="hidden items-center gap-6 md:flex lg:gap-8">
           {links.map((l) => (
             <li key={l.href}>
-              {l.route ? <Link to="/blog" className="text-sm text-muted-foreground transition-colors hover:text-foreground">{l.label}</Link> : <a href={l.href} className="text-sm text-muted-foreground transition-colors hover:text-foreground">{l.label}</a>}
+              {l.route ? <Link to="/blog" search={{ q: "", category: "Tất cả", page: 1 }} className="text-sm text-muted-foreground transition-colors hover:text-foreground">{l.label}</Link> : <a href={l.href} className="text-sm text-muted-foreground transition-colors hover:text-foreground">{l.label}</a>}
             </li>
           ))}
         </ul>
@@ -68,7 +68,7 @@ export function Navbar() {
           <ul className="mx-auto flex max-w-7xl flex-col px-5 py-3">
             {links.map((l) => (
               <li key={l.href}>
-                {l.route ? <Link to="/blog" onClick={() => setOpen(false)} className="block py-3 font-display text-lg tracking-tight">{l.label}</Link> : <a href={l.href} onClick={() => setOpen(false)} className="block py-3 font-display text-lg tracking-tight">{l.label}</a>}
+                {l.route ? <Link to="/blog" search={{ q: "", category: "Tất cả", page: 1 }} onClick={() => setOpen(false)} className="block py-3 font-display text-lg tracking-tight">{l.label}</Link> : <a href={l.href} onClick={() => setOpen(false)} className="block py-3 font-display text-lg tracking-tight">{l.label}</a>}
               </li>
             ))}
           </ul>

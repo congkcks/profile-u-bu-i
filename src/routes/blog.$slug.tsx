@@ -24,7 +24,7 @@ function BlogDetail() {
     <div className="blog-shell min-h-screen bg-background">
       <BlogHeader />
       <main className="mx-auto max-w-7xl px-5 py-8 sm:px-8">
-        <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-2 font-mono text-[9px] uppercase text-muted-foreground"><Link to="/blog" className="text-primary">Blog</Link><ChevronRight className="size-3" /><span>{post.category}</span><ChevronRight className="size-3" /><span className="truncate">{post.title}</span></nav>
+        <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-2 font-mono text-[9px] uppercase text-muted-foreground"><Link to="/blog" search={{ q: "", category: "Tất cả", page: 1 }} className="text-primary">Blog</Link><ChevronRight className="size-3" /><span>{post.category}</span><ChevronRight className="size-3" /><span className="truncate">{post.title}</span></nav>
         <div className="mt-8 grid items-start gap-10 lg:grid-cols-[minmax(0,1fr)_220px]">
           <article className="min-w-0">
             <span className="rounded-sm border border-primary/40 bg-primary/10 px-2.5 py-1 font-mono text-[9px] uppercase text-primary">{post.category}</span>
