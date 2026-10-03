@@ -39,8 +39,10 @@ export type BlogPost = {
 function createHeadings(content: string): BlogHeading[] {
   const slugger = new GithubSlugger();
   return [...content.matchAll(/^(#{2,3})\s+(.+)$/gm)].map((match) => {
-    const text = match[2].replace(/[*_`[\]]/g, "").trim();
-    return { depth: match[1].length, text, id: slugger.slug(text) };
+    const hashes = match[1] ?? "##";
+    const headingText = match[2] ?? "";
+    const text = headingText.replace(/[*_`[\]]/g, "").trim();
+    return { depth: hashes.length, text, id: slugger.slug(text) };
   });
 }
 

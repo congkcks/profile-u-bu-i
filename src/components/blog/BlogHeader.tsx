@@ -11,7 +11,7 @@ export function BlogHeader() {
         </Link>
         <div className="flex items-center gap-5 font-mono text-[10px] uppercase text-muted-foreground">
           <Link to="/" className="hidden transition-colors hover:text-foreground sm:inline">Portfolio</Link>
-          <Link to="/blog" activeProps={{ className: "text-primary" }}>Blog</Link>
+          <Link to="/blog" search={{ q: "", category: "Tất cả", page: 1 }} activeProps={{ className: "text-primary" }}>Blog</Link>
           <Search className="size-3.5" aria-hidden />
           <Moon className="size-3.5 text-primary" aria-hidden />
         </div>
