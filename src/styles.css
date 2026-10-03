@@ -82,6 +82,7 @@
   --beyond-overlay: linear-gradient(180deg, color-mix(in oklab, var(--lifestyle-bg) 68%, transparent), var(--lifestyle-bg) 46%, var(--lifestyle-bg));
   --image-overlay: linear-gradient(180deg, transparent 30%, color-mix(in oklab, var(--lifestyle-bg) 95%, transparent));
   --card-overlay: linear-gradient(180deg, transparent 35%, color-mix(in oklab, var(--background) 96%, transparent));
+  --blog-hero-overlay: linear-gradient(90deg, var(--background) 0%, color-mix(in oklab, var(--background) 72%, transparent) 48%, color-mix(in oklab, var(--background) 16%, transparent) 100%);
   --glow-accent: 0 0 60px -10px color-mix(in oklab, var(--primary) 55%, transparent);
 }
 
@@ -140,6 +141,67 @@
 @utility bg-card-overlay {
   background: var(--card-overlay);
 }
+
+@utility bg-blog-hero-overlay {
+  background: var(--blog-hero-overlay);
+}
+
+.blog-shell {
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+.blog-prose {
+  max-width: 52rem;
+  padding-top: 2.5rem;
+  color: var(--foreground);
+  font-size: 1rem;
+  line-height: 1.85;
+}
+
+.blog-prose h2,
+.blog-prose h3,
+.blog-prose h4,
+.blog-prose h5,
+.blog-prose h6 {
+  scroll-margin-top: 6rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.blog-prose h2 { margin: 3.25rem 0 1rem; font-size: 1.75rem; }
+.blog-prose h3 { margin: 2rem 0 0.75rem; font-size: 1.3rem; }
+.blog-prose h4 { margin: 1.5rem 0 0.65rem; font-size: 1.1rem; }
+.blog-prose p { margin: 1rem 0; color: color-mix(in oklab, var(--foreground) 82%, var(--muted-foreground)); }
+.blog-prose strong { color: var(--foreground); font-weight: 600; }
+.blog-prose a { color: var(--primary); text-decoration: underline; text-underline-offset: 3px; }
+.blog-prose ul,
+.blog-prose ol { margin: 1rem 0; padding-left: 1.5rem; color: color-mix(in oklab, var(--foreground) 82%, var(--muted-foreground)); }
+.blog-prose ul { list-style: disc; }
+.blog-prose ol { list-style: decimal; }
+.blog-prose li { margin: 0.35rem 0; padding-left: 0.25rem; }
+.blog-prose blockquote { margin: 1.5rem 0; border-left: 3px solid var(--primary); background: color-mix(in oklab, var(--surface) 75%, transparent); padding: 1rem 1.25rem; color: var(--foreground); }
+.blog-prose blockquote p { margin: 0; }
+.blog-prose hr { margin: 2.5rem 0; border-color: var(--border); }
+.blog-prose img { margin: 1.75rem 0; aspect-ratio: 16 / 10; width: 100%; border: 1px solid var(--border); border-radius: var(--radius-md); object-fit: cover; }
+.blog-prose table { margin: 1.5rem 0; width: 100%; border-collapse: collapse; overflow: hidden; font-size: 0.875rem; }
+.blog-prose th,
+.blog-prose td { border: 1px solid var(--border); padding: 0.75rem; text-align: left; }
+.blog-prose th { background: var(--surface-2); font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; }
+.blog-prose :not(pre) > code { border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface-2); padding: 0.15rem 0.35rem; color: var(--primary); font-family: var(--font-mono); font-size: 0.85em; }
+.blog-prose pre { margin: 1.5rem 0; overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--surface) !important; padding: 1.25rem; font-family: var(--font-mono); font-size: 0.82rem; line-height: 1.65; }
+.blog-prose pre code { background: transparent !important; }
+.blog-prose .hljs-keyword,
+.blog-prose .hljs-selector-tag,
+.blog-prose .hljs-title { color: var(--lifestyle-pink); }
+.blog-prose .hljs-string,
+.blog-prose .hljs-attr { color: var(--lifestyle-mint); }
+.blog-prose .hljs-number,
+.blog-prose .hljs-literal { color: var(--lifestyle-warm); }
+.blog-prose .hljs-comment { color: var(--muted-foreground); }
 
 @utility reveal {
   opacity: 0;
