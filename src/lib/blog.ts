@@ -1,4 +1,10 @@
-import matter from "gray-matter";
+import yaml from "js-yaml";
+
+function matter(raw: string): { data: unknown; content: string } {
+  const m = raw.replace(/^\uFEFF/, "").match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
+  if (!m) return { data: {}, content: raw };
+  return { data: yaml.load(m[1] ?? "") ?? {}, content: m[2] ?? "" };
+}
 import GithubSlugger from "github-slugger";
 import { z } from "zod";
 
