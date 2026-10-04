@@ -5,8 +5,8 @@ import { MarkdownArticle } from "@/components/blog/MarkdownArticle";
 import { formatBlogDate, getBlogPost } from "@/lib/blog";
 
 export const Route = createFileRoute("/blog/$slug")({
-  loader: ({ params }) => {
-    const post = getBlogPost(params.slug);
+  loader: async ({ params }) => {
+    const post = await getBlogPost(params.slug);
     if (!post) throw notFound();
     return post;
   },
