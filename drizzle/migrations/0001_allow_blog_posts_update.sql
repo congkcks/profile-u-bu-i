@@ -1,0 +1,1 @@
+CREATE POLICY "Anyone can update posts" ON public.blog_posts FOR UPDATE TO anon, authenticated USING (true) WITH CHECK (true);
