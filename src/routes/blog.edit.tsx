@@ -46,7 +46,7 @@ function EditBlog() {
     const post = posts.find((p) => p.slug === postSlug);
     if (!post) return;
     setSlug(postSlug);
-    setRaw(post.raw ?? rebuildRaw(post));
+    setRaw(rebuildRaw(post));
   }
 
   function rebuildRaw(post: NonNullable<typeof selected>) {
