@@ -6,7 +6,7 @@ import { BlogHeader } from "@/components/blog/BlogHeader";
 import { BlogCard } from "@/components/blog/BlogCard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { blogPosts } from "@/lib/blog";
+import { getAllPosts } from "@/lib/blog";
 
 const searchSchema = z.object({ q: z.string().optional().default(""), category: z.string().optional().default("Tất cả"), page: z.coerce.number().optional().default(1) });
 const pageSize = 6;
@@ -15,19 +15,21 @@ const description = "Bài viết về AI, Computer Vision, lập trình và nh�
 
 export const Route = createFileRoute("/blog/")({
   validateSearch: (search) => searchSchema.parse(search),
+  loader: () => getAllPosts(),
   head: () => ({ meta: [{ title }, { name: "description", content: description }, { property: "og:title", content: title }, { property: "og:description", content: description }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }),
   component: BlogIndex,
 });
 
 function BlogIndex() {
   const search = Route.useSearch();
+  const blogPosts = Route.useLoaderData();
   const navigate = useNavigate({ from: "/blog/" });
   const categories = ["Tất cả", ...new Set(blogPosts.map((post) => post.category))];
   const featured = blogPosts.find((post) => post.featured) ?? blogPosts[0];
   const filtered = useMemo(() => blogPosts.filter((post) => {
     const haystack = `${post.title} ${post.description} ${post.tags.join(" ")}`.toLocaleLowerCase("vi");
     return (search.category === "Tất cả" || post.category === search.category) && haystack.includes(search.q.toLocaleLowerCase("vi"));
-  }), [search.category, search.q]);
+  }), [blogPosts, search.category, search.q]);
   const pageCount = Math.max(1, Math.ceil(filtered.length / pageSize));
   const currentPage = Math.min(Math.max(1, search.page), pageCount);
   const visible = filtered.slice((currentPage - 1) * pageSize, currentPage * pageSize);

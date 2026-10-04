@@ -46,14 +46,13 @@ function createHeadings(content: string): BlogHeading[] {
   });
 }
 
-function parsePost(path: string, raw: string): BlogPost {
+export function parsePostRaw(raw: string, fallbackSlug = ""): BlogPost {
   const parsed = matter(raw);
   const metadata = frontmatterSchema.parse(parsed.data);
-  const filename = path.split("/").pop()?.replace(/\.md$/, "") ?? metadata.slug;
   const words = parsed.content.trim().split(/\s+/).filter(Boolean).length;
   return {
     ...metadata,
-    slug: metadata.slug || filename,
+    slug: metadata.slug || fallbackSlug,
     date: metadata.date instanceof Date ? metadata.date.toISOString().slice(0, 10) : metadata.date,
     content: parsed.content,
     readingMinutes: Math.max(1, Math.ceil(words / 220)),
@@ -61,18 +60,48 @@ function parsePost(path: string, raw: string): BlogPost {
   };
 }
 
+function parsePost(path: string, raw: string): BlogPost {
+  const filename = path.split("/").pop()?.replace(/\.md$/, "") ?? "";
+  return parsePostRaw(raw, filename);
+}
+
 export const blogPosts = Object.entries(postFiles)
   .map(([path, raw]) => parsePost(path, raw))
   .sort((a, b) => b.date.localeCompare(a.date));
 
-export function getBlogPost(slug: string) {
-  return blogPosts.find((post) => post.slug === slug);
+async function fetchPublishedPosts(): Promise<BlogPost[]> {
+  try {
+    const { supabase } = await import("@/integrations/supabase/client");
+    const { data, error } = await supabase.from("blog_posts").select("slug, raw").order("created_at", { ascending: false });
+    if (error || !data) return [];
+    return data.flatMap((row) => {
+      try {
+        return [parsePostRaw(row.raw, row.slug)];
+      } catch {
+        return [];
+      }
+    });
+  } catch {
+    return [];
+  }
+}
+
+export async function getAllPosts(): Promise<BlogPost[]> {
+  const fileSlugs = new Set(blogPosts.map((p) => p.slug));
+  const published = (await fetchPublishedPosts()).filter((p) => !fileSlugs.has(p.slug));
+  return [...blogPosts, ...published].sort((a, b) => b.date.localeCompare(a.date));
+}
+
+export async function getBlogPost(slug: string) {
+  return (await getAllPosts()).find((post) => post.slug === slug);
 }
 
 export function formatBlogDate(date: string) {
+  const d = new Date(`${date}T00:00:00`);
+  if (Number.isNaN(d.getTime())) return date;
   return new Intl.DateTimeFormat("vi-VN", {
     day: "2-digit",
     month: "short",
     year: "numeric",
-  }).format(new Date(`${date}T00:00:00`));
+  }).format(d);
 }
